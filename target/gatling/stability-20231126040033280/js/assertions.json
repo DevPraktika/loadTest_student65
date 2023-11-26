@@ -1,0 +1,10 @@
+{
+  "simulation": "ru.sremts.load.student65.Stability",
+  "simulationId": "stability-20231126040033280",
+  "start": 1700971239532,
+  "description": "",
+  "scenarios": ["Http Scenario"],
+  "assertions": [
+
+  ]
+}

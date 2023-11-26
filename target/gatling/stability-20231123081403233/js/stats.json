@@ -1,0 +1,415 @@
+{
+  "type": "GROUP",
+"name": "All Requests",
+"path": "",
+"pathFormatted": "group_missing-name-b06d1",
+"stats": {
+    "name": "All Requests",
+    "numberOfRequests": {
+        "total": 1331971,
+        "ok": 1331971,
+        "ko": 0
+    },
+    "minResponseTime": {
+        "total": 68,
+        "ok": 68,
+        "ko": 0
+    },
+    "maxResponseTime": {
+        "total": 12143,
+        "ok": 12143,
+        "ko": 0
+    },
+    "meanResponseTime": {
+        "total": 95,
+        "ok": 95,
+        "ko": 0
+    },
+    "standardDeviation": {
+        "total": 207,
+        "ok": 207,
+        "ko": 0
+    },
+    "percentiles1": {
+        "total": 79,
+        "ok": 79,
+        "ko": 0
+    },
+    "percentiles2": {
+        "total": 84,
+        "ok": 84,
+        "ko": 0
+    },
+    "percentiles3": {
+        "total": 94,
+        "ok": 94,
+        "ko": 0
+    },
+    "percentiles4": {
+        "total": 205,
+        "ok": 205,
+        "ko": 0
+    },
+    "group1": {
+    "name": "t < 800 ms",
+    "htmlName": "t < 800 ms",
+    "count": 1324764,
+    "percentage": 99
+},
+    "group2": {
+    "name": "800 ms <= t < 1200 ms",
+    "htmlName": "t ≥ 800 ms <br> t < 1200 ms",
+    "count": 2035,
+    "percentage": 0
+},
+    "group3": {
+    "name": "t ≥ 1200 ms",
+    "htmlName": "t ≥ 1200 ms",
+    "count": 5172,
+    "percentage": 0
+},
+    "group4": {
+    "name": "failed",
+    "htmlName": "failed",
+    "count": 0,
+    "percentage": 0
+},
+    "meanNumberOfRequestsPerSecond": {
+        "total": 116.90108829208356,
+        "ok": 116.90108829208356,
+        "ko": 0
+    }
+},
+"contents": {
+"req_get--weatherfor-81b21": {
+        "type": "REQUEST",
+        "name": "GET /WeatherForecast",
+"path": "GET /WeatherForecast",
+"pathFormatted": "req_get--weatherfor-81b21",
+"stats": {
+    "name": "GET /WeatherForecast",
+    "numberOfRequests": {
+        "total": 332996,
+        "ok": 332996,
+        "ko": 0
+    },
+    "minResponseTime": {
+        "total": 75,
+        "ok": 75,
+        "ko": 0
+    },
+    "maxResponseTime": {
+        "total": 12143,
+        "ok": 12143,
+        "ko": 0
+    },
+    "meanResponseTime": {
+        "total": 111,
+        "ok": 111,
+        "ko": 0
+    },
+    "standardDeviation": {
+        "total": 271,
+        "ok": 271,
+        "ko": 0
+    },
+    "percentiles1": {
+        "total": 87,
+        "ok": 87,
+        "ko": 0
+    },
+    "percentiles2": {
+        "total": 91,
+        "ok": 91,
+        "ko": 0
+    },
+    "percentiles3": {
+        "total": 150,
+        "ok": 150,
+        "ko": 0
+    },
+    "percentiles4": {
+        "total": 277,
+        "ok": 277,
+        "ko": 0
+    },
+    "group1": {
+    "name": "t < 800 ms",
+    "htmlName": "t < 800 ms",
+    "count": 330677,
+    "percentage": 99
+},
+    "group2": {
+    "name": "800 ms <= t < 1200 ms",
+    "htmlName": "t ≥ 800 ms <br> t < 1200 ms",
+    "count": 441,
+    "percentage": 0
+},
+    "group3": {
+    "name": "t ≥ 1200 ms",
+    "htmlName": "t ≥ 1200 ms",
+    "count": 1878,
+    "percentage": 1
+},
+    "group4": {
+    "name": "failed",
+    "htmlName": "failed",
+    "count": 0,
+    "percentage": 0
+},
+    "meanNumberOfRequestsPerSecond": {
+        "total": 29.22555731086537,
+        "ok": 29.22555731086537,
+        "ko": 0
+    }
+}
+    },"req_get--forecast-84465": {
+        "type": "REQUEST",
+        "name": "GET /Forecast",
+"path": "GET /Forecast",
+"pathFormatted": "req_get--forecast-84465",
+"stats": {
+    "name": "GET /Forecast",
+    "numberOfRequests": {
+        "total": 332994,
+        "ok": 332994,
+        "ko": 0
+    },
+    "minResponseTime": {
+        "total": 69,
+        "ok": 69,
+        "ko": 0
+    },
+    "maxResponseTime": {
+        "total": 10530,
+        "ok": 10530,
+        "ko": 0
+    },
+    "meanResponseTime": {
+        "total": 89,
+        "ok": 89,
+        "ko": 0
+    },
+    "standardDeviation": {
+        "total": 177,
+        "ok": 177,
+        "ko": 0
+    },
+    "percentiles1": {
+        "total": 77,
+        "ok": 77,
+        "ko": 0
+    },
+    "percentiles2": {
+        "total": 80,
+        "ok": 80,
+        "ko": 0
+    },
+    "percentiles3": {
+        "total": 85,
+        "ok": 85,
+        "ko": 0
+    },
+    "percentiles4": {
+        "total": 174,
+        "ok": 174,
+        "ko": 0
+    },
+    "group1": {
+    "name": "t < 800 ms",
+    "htmlName": "t < 800 ms",
+    "count": 331407,
+    "percentage": 100
+},
+    "group2": {
+    "name": "800 ms <= t < 1200 ms",
+    "htmlName": "t ≥ 800 ms <br> t < 1200 ms",
+    "count": 528,
+    "percentage": 0
+},
+    "group3": {
+    "name": "t ≥ 1200 ms",
+    "htmlName": "t ≥ 1200 ms",
+    "count": 1059,
+    "percentage": 0
+},
+    "group4": {
+    "name": "failed",
+    "htmlName": "failed",
+    "count": 0,
+    "percentage": 0
+},
+    "meanNumberOfRequestsPerSecond": {
+        "total": 29.22538177988415,
+        "ok": 29.22538177988415,
+        "ko": 0
+    }
+}
+    },"req_get--cities-57f63": {
+        "type": "REQUEST",
+        "name": "GET /Cities",
+"path": "GET /Cities",
+"pathFormatted": "req_get--cities-57f63",
+"stats": {
+    "name": "GET /Cities",
+    "numberOfRequests": {
+        "total": 332992,
+        "ok": 332992,
+        "ko": 0
+    },
+    "minResponseTime": {
+        "total": 68,
+        "ok": 68,
+        "ko": 0
+    },
+    "maxResponseTime": {
+        "total": 10862,
+        "ok": 10862,
+        "ko": 0
+    },
+    "meanResponseTime": {
+        "total": 93,
+        "ok": 93,
+        "ko": 0
+    },
+    "standardDeviation": {
+        "total": 214,
+        "ok": 214,
+        "ko": 0
+    },
+    "percentiles1": {
+        "total": 77,
+        "ok": 77,
+        "ko": 0
+    },
+    "percentiles2": {
+        "total": 82,
+        "ok": 82,
+        "ko": 0
+    },
+    "percentiles3": {
+        "total": 86,
+        "ok": 86,
+        "ko": 0
+    },
+    "percentiles4": {
+        "total": 281,
+        "ok": 281,
+        "ko": 0
+    },
+    "group1": {
+    "name": "t < 800 ms",
+    "htmlName": "t < 800 ms",
+    "count": 331052,
+    "percentage": 99
+},
+    "group2": {
+    "name": "800 ms <= t < 1200 ms",
+    "htmlName": "t ≥ 800 ms <br> t < 1200 ms",
+    "count": 560,
+    "percentage": 0
+},
+    "group3": {
+    "name": "t ≥ 1200 ms",
+    "htmlName": "t ≥ 1200 ms",
+    "count": 1380,
+    "percentage": 0
+},
+    "group4": {
+    "name": "failed",
+    "htmlName": "failed",
+    "count": 0,
+    "percentage": 0
+},
+    "meanNumberOfRequestsPerSecond": {
+        "total": 29.225206248902932,
+        "ok": 29.225206248902932,
+        "ko": 0
+    }
+}
+    },"req_get--citiesid-66c3f": {
+        "type": "REQUEST",
+        "name": "GET /CitiesId",
+"path": "GET /CitiesId",
+"pathFormatted": "req_get--citiesid-66c3f",
+"stats": {
+    "name": "GET /CitiesId",
+    "numberOfRequests": {
+        "total": 332989,
+        "ok": 332989,
+        "ko": 0
+    },
+    "minResponseTime": {
+        "total": 69,
+        "ok": 69,
+        "ko": 0
+    },
+    "maxResponseTime": {
+        "total": 9629,
+        "ok": 9629,
+        "ko": 0
+    },
+    "meanResponseTime": {
+        "total": 87,
+        "ok": 87,
+        "ko": 0
+    },
+    "standardDeviation": {
+        "total": 144,
+        "ok": 144,
+        "ko": 0
+    },
+    "percentiles1": {
+        "total": 77,
+        "ok": 77,
+        "ko": 0
+    },
+    "percentiles2": {
+        "total": 80,
+        "ok": 80,
+        "ko": 0
+    },
+    "percentiles3": {
+        "total": 85,
+        "ok": 85,
+        "ko": 0
+    },
+    "percentiles4": {
+        "total": 155,
+        "ok": 155,
+        "ko": 0
+    },
+    "group1": {
+    "name": "t < 800 ms",
+    "htmlName": "t < 800 ms",
+    "count": 331628,
+    "percentage": 100
+},
+    "group2": {
+    "name": "800 ms <= t < 1200 ms",
+    "htmlName": "t ≥ 800 ms <br> t < 1200 ms",
+    "count": 506,
+    "percentage": 0
+},
+    "group3": {
+    "name": "t ≥ 1200 ms",
+    "htmlName": "t ≥ 1200 ms",
+    "count": 855,
+    "percentage": 0
+},
+    "group4": {
+    "name": "failed",
+    "htmlName": "failed",
+    "count": 0,
+    "percentage": 0
+},
+    "meanNumberOfRequestsPerSecond": {
+        "total": 29.224942952431103,
+        "ok": 29.224942952431103,
+        "ko": 0
+    }
+}
+    }
+}
+
+}

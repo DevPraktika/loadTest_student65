@@ -1,0 +1,10 @@
+{
+  "simulation": "ru.sremts.load.student65.MaxPerformance",
+  "simulationId": "maxperformance-20231125233237806",
+  "start": 1700955162127,
+  "description": "",
+  "scenarios": ["Http Scenario"],
+  "assertions": [
+
+  ]
+}
