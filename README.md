@@ -1,62 +1,36 @@
-# Gatling Template Project
+# Gatling Load Testing Project
 
-Template project for Gatling performance tests
+У нас нет статистики запросов к нашему API, в базе еще нет реальных данных. Благодаря Swagger известно, что имеется endpoint-ы: `Cities`, `Forecast`, `WeatherForecast`.
+Будем считать, что пользователи создают примерно одинаковую нагрузку на все эти endpoint-ы. У будущих операторов сервиса запросили информацию о частоте внесения данных о наблюдаемой погоде, список городов, в которых проводятся наблюдения. И пока нет ответа, проведем нагрузочное тестирование на текущих тестовых данных, ограничившись GET запросами.
+В результате у нас получились следующие запросы:
 
-## Project structure
+    GET /WeatherForecast
+    GET /Forecast
+    GET /Cities
+    GET /Cities/1
 
-```
-src.test.resources - project resources
-src.test.scala.ru.sremts.load.student65.cases - simple cases
-src.test.scala.ru.sremts.load.student65.scenarios - common load scenarios assembled from simple cases
-src.test.scala.ru.sremts.load.student65 - common test configs
-```
+Для нагрузочного тестирования будем использовать инструмент Gatling. И воспользуемся удобным шаблоном `Gatling-template.g8` для быстрого создания проекта тестирования производительности.
+Наши запросы описываем в файле [HttpActions.scala](https://github.com/DevPraktika/loadTest_student65/blob/main/src/test/scala/ru/sremts/load/student65/cases/HttpActions.scala). В файле [HttpScenario.scala](https://github.com/DevPraktika/loadTest_student65/blob/main/src/test/scala/ru/sremts/load/student65/scenarios/HttpScenario.scala) сценарий выполнения запросов, так как мы предполагаем примерно одинаковую нагрузку на endpoint-ы, сценарий состоит из последовательно выполняемых запросов.
+Настройки параметров http протокола, такие как `virtualHost`, `disableCaching`, `shareConnections` задаем в файле [student65.scala](https://github.com/DevPraktika/loadTest_student65/blob/main/src/test/scala/ru/sremts/load/student65/student65.scala).
+В файле [simulation.conf](https://github.com/DevPraktika/loadTest_student65/blob/main/src/test/resources/simulation.conf) задаем параметры теста производительности. Для теста максимальной производительности (MaxPerformance), когда выполняется несколько шагов и на каждом шаге увеличивается интенсивность, зададим:
 
-## Test configuration
+    rampDuration: 60s # Время разгона
+    stageDuration: 300s # Длительность "полки"
+    intensity: 100 # Интенсивность
+    stagesNumber: 10 # Количество шагов
 
-Pass this params to JVM using -DparamName="paramValue" AND -Dconfig.override_with_env_vars=true
+После завершения теста MaxPerformance получаем отчет https://devpraktika.github.io/loadTest_student65/target/gatling/maxperformance-20231126110159934/index.html
+Примем SLA: время отклика - 1 сек, процент ошибок  - 1%.
+Анализируя этот отчет и данные мониторинга http://5eca9364-3899-4021-b861-fd4f64e48c6d.mts-gslb.ru/d/WMN8AfnSz/four-golden-signals?orgId=1&from=1700996386852&to=1701000467854 получаем, что после 240req/s API начинает сбоить, не удовлетворяя SLA. Упирается в лимиты выделенные подам (100m CPU, 128Mb RAM), что приводит к перезапуску подов.
+Считаем, что максимальная производительность нашего API 80% от полученных 240req/s, т.е. 190req/s.
+Теперь проведем тест стабильности (Stability), нагрузив на 80% от полученной максимальной производительности. В файле [simulation.conf](https://github.com/DevPraktika/loadTest_student65/blob/main/src/test/resources/simulation.conf) задаем параметры:
 
-```
-Gatling logs:
-CONSOLE_LOGGING=ON - turn on console logging
-FILE_LOGGING=ON - turn on logging in file "target/gatling/gatling.log"
-GRAYLOG_LOGGING=ON - turn on logging in Graylog
-    graylog params:
-        GRAYLOG_HOST - Graylog host
-        GRAYLOG_PORT - on which port Graylog input is
-        GRAYLOG_STREAM - the name of Graylog stream
+    rampDuration: 10m  # Время разгона
+    stageDuration: 50m  # Длительность теста
+    intensity: 35 # Интенсивность
 
-Gatling metrics in InfluxDB:
-GRAPHITE_HOST - influxdb with configured graphite plugin host
-GRAPHITE_PORT - see /etc/influxdb/influxdb.conf: bind-address
-INFLUX_PREFIX - see /etc/influxdb/influxdb.conf: database
-```
+После завершения теста Stability получаем отчет в файле https://devpraktika.github.io/loadTest_student65/target/gatling/stability-20231126124615747/index.html
+Данные мониторинга http://5eca9364-3899-4021-b861-fd4f64e48c6d.mts-gslb.ru/d/WMN8AfnSz/four-golden-signals?orgId=1&from=1701002697057&to=1701006507496
 
-Also, you can pass all params from Gatling-picatinny or use custom params
-read: https://github.com/Tinkoff/gatling-picatinny/blob/master/README.md
+Вывод. Максимальная производительность - 190req/s, тест стабильности при нагрузке 140req/s прошел успешно. В нашем случае узкое место в ресурсах выделенных подам. Для реализации возможности обрабатывать больше запросов в первую очередь нужно увеличить лимит CPU и RAM для подов. Сейчас кластер БД справляется с нагрузкой, но после увеличения ресурсов подов может потребоваться его оптимизация. Дальше, уже совместно с разработчиками, оптимизировать запросы API к базе и схему базы, добавить ключи для "cityId", "dateTime".  Запрос `WeatherForecast` порождает множество обращений к базе, сначала получая список всех городов, а затем для каждого города все элементы погоды. В большинстве случаев пользователю не будет нужны все элементы погоды, логично ввести ограничения по дате.
 
-## Debug
-
-1. Debug test with 1 user, requires proxy on localhost:8888, eg using Fiddler or Wireshark
-
-```
-"Gatling/testOnly ru.sremts.load.student65.Debug"
-```
-
-2. Run test from IDEA with breakpoints
-
-```
-ru.sremts.load.GatlingRunner
-```
-
-## Launch test
-
-```
-"Gatling/testOnly ru.sremts.load.student65.MaxPerformance" - maximum performance test
-"Gatling/testOnly ru.sremts.load.student65.Stability" - stability test
-```
-
-## Help
-
-Telegram: @qa_load
-
-Gatling docs: https://gatling.io/docs/gatling/reference/current/core/injection/
